@@ -1,6 +1,7 @@
 package com.johnathanmarksmith.mongodb.example;
 
 import com.mongodb.Mongo;
+import com.mongodb.MongoURI;
 import com.mongodb.ServerAddress;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -46,7 +47,7 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
          * this is for a single db
          */
 
-        // return new Mongo();
+        return new Mongo(new MongoURI(System.getenv("MONGOHQ_URL")));
 
 
         /**
@@ -54,7 +55,9 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
          * This is for a relset of db's
          */
 
-        return new Mongo(new ArrayList<ServerAddress>() {{ add(new ServerAddress("127.0.0.1", 27017)); add(new ServerAddress("127.0.0.1", 27027)); add(new ServerAddress("127.0.0.1", 27037)); }});
+//        return new Mongo(new ArrayList<ServerAddress>() {{ add(new ServerAddress("127.0.0.1", 27017)); add(new ServerAddress("127.0.0.1", 27027)); add(new ServerAddress("127.0.0.1", 27037)); }});
+        //return new Mongo(new ArrayList<ServerAddress>() {{ add(new ServerAddress("localhost", 27017)); }});
+//        return new Mongo(new ArrayList<ServerAddress>() {{ add(new ServerAddress(System.getenv("MONGOHQ_URL"))); }});
 
     }
 
