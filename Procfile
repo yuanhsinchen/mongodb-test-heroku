@@ -1,0 +1,1 @@
+mongotest: mvn exec:java
